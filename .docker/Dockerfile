@@ -1,6 +1,4 @@
-FROM php:7.1-fpm
-
-MAINTAINER Descamps Antoine <antoine.descamps@ineat-conseil.fr>
+FROM php:7.4-cli
 
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
@@ -11,6 +9,7 @@ RUN apt-get update && apt-get install -y \
         libpq-dev \
         libxpm-dev \
         libvpx-dev \
+        vim \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug \
     && docker-php-ext-install -j$(nproc) mcrypt \
