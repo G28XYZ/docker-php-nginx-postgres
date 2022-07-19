@@ -1,6 +1,6 @@
 <?php
 
-// phpinfo();
+phpinfo();
 
 $dbh = new PDO('pgsql:host=db;dbname=postgres', 'postgres', 'postgres');
 

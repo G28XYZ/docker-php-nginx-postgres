@@ -1,4 +1,4 @@
-FROM php:7.4-fpm-alpine
+FROM php:8.0-fpm-alpine
 
 COPY wait-for-it.sh /usr/bin/wait-for-it
 
@@ -9,6 +9,9 @@ RUN apk add --update --no-cache libgd libpng-dev libjpeg-turbo-dev freetype-dev 
 RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql && \
         docker-php-ext-install -j$(nproc) opcache pdo_pgsql pgsql && \
         docker-php-ext-enable pdo_pgsql sodium
+
+RUN apk add nodejs neovim ripgrep alpine-sdk --update && \
+    git clone https://github.com/NvChad/NvChad ~/.config/nvim
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
